@@ -49,10 +49,8 @@
         .active {
             display: block;
         }
-      
     </style>
 </head>
-
 <body>
     <div class="container">
         <div class="main">
@@ -60,18 +58,6 @@
                 <div class="slide active"><img src="https://picsum.photos/id/120/1000/500" alt=""></div>
                 <div class="slide"><img src="https://picsum.photos/id/85/1000/500" alt=""></div>
                 <div class="slide"> <img src="https://picsum.photos/id/180/1000/500" alt=""></div>
-            </div>
-        </div>
-        <div class="great_dot">
-            <div class="dot active" onclick="siteSlideshowChangeSlide(this,0)">
-            </div>  
-            <div class="dot" onclick="siteSlideshowChangeSlide(this,1)">
-            </div>
-            <div class="dot" onclick="siteSlideshowChangeSlide(this,2)">
-            </div>
-            <div class="dot" onclick="siteSlideshowChangeSlide(this,3)">
-        </div>
-            <div class="dot" onclick="siteSlideshowChangeSlide(this,4)">
             </div>
         </div>
         <div class="main">
@@ -86,37 +72,7 @@
         let currentindex1 = 0;
         let currentindex2 = 0;
 
-
-
         const slide = document.querySelectorAll('#slider1  .slide');
-
-
-        // function nextslide() {
-        //     console.log("here");
-        // slide[currentindex].classList.remove("active");
-        // console.log(slide)
-        // currentindex++;
-        // if (currentindex >= slide.length) {
-        //     currentindex = 0;
-        // }
-        // slide[currentindex].classList.add("active");
-        // }    
-
-        // function previouslide() {
-        // slide[currentindex].classList.remove("active");
-        // currentindex--;
-        // if (currentindex < 0) {
-        //     currentindex = slide.length - 1;
-        // }
-        // slide[currentindex].classList.add("active");
-        // }   
-
-
-        // slide[currentindex].classList.add("active");
-
-        // setInterval(nextslide,2000);
-
-
         const slide2 = document.querySelectorAll('#slider2  .slide');
 
         function nextslide() {
@@ -160,8 +116,6 @@
 
         setInterval(nextslide, 2700);
         setInterval(nextslide2, 2500);
-
     </script>
 </body>
-
 </html>
