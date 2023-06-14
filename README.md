@@ -52,9 +52,9 @@ exam repo
 <body>
     <div class="main">
         <div class="slides">
-            <img src="https://picsum.photos/id/220/1000/500" alt="" class="slide active">
-            <img src="https://picsum.photos/id/221/1000/500" alt="" class="slide">
-            <img src="https://picsum.photos/id/228/1000/500" alt="" class="slide">
+            <img src="img.jpg" alt="img1" class="slide active">
+            <img src="img2.jpg" alt="img2" class="slide">
+            <img src="img3.jpg" alt="img3" class="slide">
         </div>
     </div>
     <div class="nav">
