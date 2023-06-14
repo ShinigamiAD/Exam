@@ -1,1 +1,167 @@
-"Hello Everyone, Hope you are doing well. All the Best!!!”
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple slider in one page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 60%;
+            margin: 0 auto;
+            margin-bottom: 50px;
+        }
+
+        .main {
+            width: 100%;
+            height: 500px;
+            margin: auto;
+            margin-top: 50px;
+            border: 1px;
+            position: relative;
+            box-shadow: 0px 0px 10px gray;
+            overflow: hidden;
+        }
+
+        .slide {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+        }
+
+        .slides {
+            display: flex;
+            height: 100%;
+            width: 100%;
+        }
+
+        .slide {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+      
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="main">
+            <div class="slides" id="slider1">
+                <div class="slide active"><img src="https://picsum.photos/id/120/1000/500" alt=""></div>
+                <div class="slide"><img src="https://picsum.photos/id/85/1000/500" alt=""></div>
+                <div class="slide"> <img src="https://picsum.photos/id/180/1000/500" alt=""></div>
+            </div>
+        </div>
+        <div class="great_dot">
+            <div class="dot active" onclick="siteSlideshowChangeSlide(this,0)">
+            </div>  
+            <div class="dot" onclick="siteSlideshowChangeSlide(this,1)">
+            </div>
+            <div class="dot" onclick="siteSlideshowChangeSlide(this,2)">
+            </div>
+            <div class="dot" onclick="siteSlideshowChangeSlide(this,3)">
+        </div>
+            <div class="dot" onclick="siteSlideshowChangeSlide(this,4)">
+            </div>
+        </div>
+        <div class="main">
+            <div class="slides" id="slider2">
+                <div class="slide active"><img src="https://picsum.photos/id/100/1000/500" alt=""></div>
+                <div class="slide"> <img src="https://picsum.photos/id/125/1000/500" alt=""></div>
+                <div class="slide"><img src="https://picsum.photos/id/185/1000/500" alt=""></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let currentindex1 = 0;
+        let currentindex2 = 0;
+
+
+
+        const slide = document.querySelectorAll('#slider1  .slide');
+
+
+        // function nextslide() {
+        //     console.log("here");
+        // slide[currentindex].classList.remove("active");
+        // console.log(slide)
+        // currentindex++;
+        // if (currentindex >= slide.length) {
+        //     currentindex = 0;
+        // }
+        // slide[currentindex].classList.add("active");
+        // }    
+
+        // function previouslide() {
+        // slide[currentindex].classList.remove("active");
+        // currentindex--;
+        // if (currentindex < 0) {
+        //     currentindex = slide.length - 1;
+        // }
+        // slide[currentindex].classList.add("active");
+        // }   
+
+
+        // slide[currentindex].classList.add("active");
+
+        // setInterval(nextslide,2000);
+
+
+        const slide2 = document.querySelectorAll('#slider2  .slide');
+
+        function nextslide() {
+            slide[currentindex1].classList.remove('active');
+            currentindex1++;
+            if (currentindex1 >= slide.length) {
+                currentindex1 = 0;
+            }
+            slide[currentindex1].classList.add('active');
+        }
+
+        function previouslide() {
+            slide[currentindex1].classList.remove('active');
+            currentindex1--;
+            if (currentindex1 < 0) {
+                currentindex1 = slide.length - 1;
+            }
+            slide[currentindex1].classList.add('active');
+        }
+
+        function nextslide2() {
+            slide2[currentindex2].classList.remove('active');
+            currentindex2++;
+            if (currentindex2 >= slide2.length) {
+                currentindex2 = 0;
+            }
+            slide2[currentindex2].classList.add('active');
+        }
+
+        function previouslide2() {
+            slide2[currentindex2].classList.remove('active');
+            currentindex2--;
+            if (currentindex2 < 0) {
+                currentindex2 = slide2.length - 1;
+            }
+            slide2[currentindex2].classList.add('active');
+        }
+
+        slide[currentindex1].classList.add('active');
+        slide2[currentindex2].classList.add('active');
+
+        setInterval(nextslide, 2700);
+        setInterval(nextslide2, 2500);
+
+    </script>
+</body>
+
+</html>
