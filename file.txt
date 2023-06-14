@@ -116,10 +116,10 @@
         }
 
         function updatedots(container,currentindex) {
-            const dots = container.querySelectorAll('dot');
+            const dots = container.querySelectorAll('.dot');
             dots.forEach((dot, index) => {
                 if(index === currentindex){
-                    dot.classList.classList.add('active-dot');
+                    dot.classList.add('active-dot');
                 }else{
                     dot.classList.remove('active-dot');
                 }
@@ -195,4 +195,5 @@
 
     </script>
 </body>
+
 </html>
