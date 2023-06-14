@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -49,16 +48,38 @@
         .active {
             display: block;
         }
+
+        .dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+            background-color: blue;
+        }
+
+        .dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 25%;
+            background-color: gray;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        .active-dot {
+            background-color: black;
+        }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="main">
             <div class="slides" id="slider1">
-                <div class="slide active"><img src="https://picsum.photos/id/120/1000/500" alt=""></div>
-                <div class="slide"><img src="https://picsum.photos/id/85/1000/500" alt=""></div>
-                <div class="slide"> <img src="https://picsum.photos/id/180/1000/500" alt=""></div>
+                <div class="slide active"><img src="https://picsum.photos/id/185/1000/500" alt=""></div>
+                <div class="slide"><img src="https://picsum.photos/id/25/1000/500" alt=""></div>
+                <div class="slide"> <img src="https://picsum.photos/id/100/1000/500" alt=""></div>
             </div>
+            <div class="dots" id="dots1"></div>
         </div>
         <div class="main">
             <div class="slides" id="slider2">
@@ -66,14 +87,61 @@
                 <div class="slide"> <img src="https://picsum.photos/id/125/1000/500" alt=""></div>
                 <div class="slide"><img src="https://picsum.photos/id/185/1000/500" alt=""></div>
             </div>
+            <div class="dots" id="dots2"></div>
         </div>
     </div>
     <script>
         let currentindex1 = 0;
         let currentindex2 = 0;
+    
 
         const slide = document.querySelectorAll('#slider1  .slide');
         const slide2 = document.querySelectorAll('#slider2  .slide');
+        const dots1 = document.getElementById('dots1');
+        const dots2 = document.getElementById('dots2');
+
+        function createdots(container,slideCount,currentindex) {
+            container.innerHTML = '';
+            for(let i = 0; i < slideCount; i++){
+                const dot = document.createElement('span');
+                dot.classList.add('dot');
+                if(i === currentindex){
+                    dot.classList.add('active-dot');
+                }
+                dot.addEventListener('click',function(){
+                    gotoslide(container.id, i);
+                });
+                container.appendChild(dot);
+            }
+        }
+
+        function updatedots(container,currentindex) {
+            const dots = container.querySelectorAll('dot');
+            dots.forEach((dot, index) => {
+                if(index === currentindex){
+                    dot.classList.classList.add('active-dot');
+                }else{
+                    dot.classList.remove('active-dot');
+                }
+            });
+        }
+
+        function gotoslide(sliderid,index) {
+            const slides = document.querySelectorAll(`#${sliderid} .slide`);
+            slides[currentindex1].classList.remove('active');
+            slides[currentindex2].classList.remove('active');
+
+            if (sliderid === 'slider1') {
+                currentindex1 = index;
+                slides[currentindex1].classList.add('active');
+                updatedots(dots1, currentindex1);
+            }else if(sliderid === `slider2`){
+                currentindex2 = index;
+                slides[currentindex2].classList.add('active');
+                updatedots(dots2, currentindex2);
+            }
+        }
+
 
         function nextslide() {
             slide[currentindex1].classList.remove('active');
@@ -82,6 +150,7 @@
                 currentindex1 = 0;
             }
             slide[currentindex1].classList.add('active');
+            updatedots(dots1,  currentindex1);
         }
 
         function previouslide() {
@@ -91,6 +160,7 @@
                 currentindex1 = slide.length - 1;
             }
             slide[currentindex1].classList.add('active');
+            updatedots(dots1,  currentindex1);
         }
 
         function nextslide2() {
@@ -100,6 +170,7 @@
                 currentindex2 = 0;
             }
             slide2[currentindex2].classList.add('active');
+            updatedots(dots2,  currentindex2)
         }
 
         function previouslide2() {
@@ -109,13 +180,19 @@
                 currentindex2 = slide2.length - 1;
             }
             slide2[currentindex2].classList.add('active');
+            updatedots(dots2,  currentindex2)
         }
 
         slide[currentindex1].classList.add('active');
         slide2[currentindex2].classList.add('active');
 
+
+        createdots(dots1, slide.length, currentindex1);
+        createdots(dots2, slide2.length, currentindex2);
+
         setInterval(nextslide, 2700);
         setInterval(nextslide2, 2500);
+
     </script>
 </body>
 </html>
