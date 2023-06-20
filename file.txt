@@ -260,55 +260,6 @@
             updatedots(dots5, currentindex5);
         }
 
-
-        function previouslide() {
-            slide[currentindex1].classList.remove("active");
-            currentindex1--;
-            if (currentindex1 < 0) {
-                currentindex1 = slide.length - 1;
-            }
-            slide[currentindex1].classList.add("active");
-            updatedots(dots1, currentindex1);
-
-        }
-
-        function previouslide2() {
-            slide2[currentindex2].classList.remove("active");
-            currentindex2--;
-            if (currentindex2 < 0) {
-                currentindex2 = slide2.length - 1;
-            }
-            slide2[currentindex2].classList.add("active");
-            updatedots(dots2, currentindex2);
-        }
-
-        function previouslide3() {
-            slide3[currentindex3].classList.remove("active");
-            currentindex3--;
-            if (currentindex3 < 0) {
-                currentindex3 = slide3.length - 1;
-            }
-            slide3[currentindex3].classList.add("active");
-        }
-        function previouslide4() {
-            slide4[currentindex4].classList.remove("active");
-            currentindex4--;
-            if (currentindex4 < 0) {
-                currentindex4 = slide4.length - 1;
-            }
-            slide4[currentindex3].classList.add("active");
-        }
-        function previouslide5() {
-            slide5[currentindex5].classList.remove("active");
-            currentindex5--;
-            if (currentindex5 < 0) {
-                currentindex5 = slide5.length - 1;
-            }
-            slide5[currentindex5].classList.add("active");
-        }
-
-
-
         slide[currentindex1].classList.add("active");
         slide2[currentindex2].classList.add("active");
         slide3[currentindex3].classList.add("active");
@@ -329,8 +280,6 @@
         setInterval(nextslide4, 2500);
         setInterval(nextslide5, 2700);
 
-
     </script>
 </body>
-
 </html>
