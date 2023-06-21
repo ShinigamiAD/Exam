@@ -1,191 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-   <style>
-    * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  .tes {
-    color: #1aa3ff;
-    font-size: 35px;
-    text-align: center;
-  }
-
-  .container {
-    max-width: 75%;
-    margin: 0 auto;
-    margin-bottom: 50px;
-    display: grid;
-    gap: 20px;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  }
-
-  .main {
-    width: 100%;
-    height: 500px;
-    margin: auto;
-    margin-top: 50px;
-    border: 1px;
-    position: relative;
-    box-shadow: 0px 0px 10px gray;
-    border-radius: 15px;
-  }
-
-  .main .slides{
-    overflow-x: scroll;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-  }
-
-  .slide {
-    height: 400px;
-    width: 100%;
-    position: absolute;
-    cursor: pointer;
-    object-fit: cover;
-  }
-
-  .slides {
-    display: flex;
-    height: 100%;
-    width: 100%;
-  }
-
-  .slide {
-    display: none;
-  }
-
-  .active {
-    display: block;
-  }
-
-  .great_dot {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-    align-items: center;
-  }
-
-  .dot {
-    width: 15px;
-    height: 15px;
-    border-radius: 60%;
-    background-color: gray;
-    margin: 5px;
-    cursor: pointer;
-  }
-.dot.active{
-  background-color: aqua;
-  width: 15px;
-  height: 15px;
-  border-radius: 60%;
-  margin: 5px;
-  cursor: pointer;
-}
-  @media screen and (max-width:768px) {
-        .container{
-           max-width: 90%;
-           grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); 
-        }
-        .main{
-            border-radius: 15px;
-            height: 400px;
-        }
-    }
-   </style>
-  </head>
-  <body>
-    <div class="tes">Testimonial Sliders</div>
-    <div class="container">
-      <div class="main">
-        <div class="slides" id="slider1" onscroll="slidescroll()">
-          <div class="slide active"><img src="./images/96352dff4cfa728383eabcebf1e673f4.png" alt="image1" /></div>
-          <div class="slide"><img src="./images/d424d941f46a8652a8afd4144faee247.jpg" alt="img2" /></div>
-          <div class="slide"><img src="./images/featured1.jpg" alt="img3" /></div>
-        </div>
-        <div class="great_dot">
-          <div class="dot active" onclick="slidechange(this,0)"></div>
-          <div class="dot " onclick="slidechange(this,1)"></div>
-          <div class="dot " onclick="slidechange(this,2)"></div>
-        </div>
+   <div class="slides" id="slider1">
+        <div class="slide active"><img src="https://picsum.photos/id/12/1000/500" alt="image1" /></div>
+        <div class="slide"><img src="https://picsum.photos/id/15/1000/500" alt="img2" /></div>
+        <div class="slide"><img src="https://picsum.photos/id/16/1000/500" alt="img3" /></div>
       </div>
-      <div class="main">
-        <div class="slides" id="slider2">
-          <div class="slide active"><img src="./images/featured2.jpg" alt="img1" /></div>
-          <div class="slide"><img src="./images/featured3.jpg" alt="img2" /></div>
-          <div class="slide"><img src="./images/Untitled2.jpg" alt="img3" /></div>
-        </div>
-        <div class="dots" id="dots2"></div>
-      </div>
+      <div class="dots" id="dots1"></div>
     </div>
-    <script>
-        let currentindex1 = 0;
-        let currentindex2 = 0;
 
-
-const slide = document.querySelectorAll('#slider1 .slide');
-const slide2 = document.querySelectorAll('#slider2 .slide');
-
-function nextslide() {
-  slide[currentindex1].classList.remove('active');
-  currentindex1++;
-  if (currentindex1 >= slide.length) {
-    currentindex1 = 0;
-  }
-  slide[currentindex1].classList.add('active');
-}
-
-function nextslide2() {
-  slide2[currentindex2].classList.remove('active');
-  currentindex2++;
-  if (currentindex2 >= slide2.length) {
-    currentindex2 = 0;
-  }
-  slide2[currentindex2].classList.add('active');
-}
-
-slide[currentindex1].classList.add('active');
-slide2[currentindex2].classList.add('active');
-
-
-// setInterval(nextslide, 2700);
-// setInterval(nextslide2, 2500);
-
-window.slidechange = (dotElement,desiredslide) => {
-  document.querySelector(".great_dot .dot.active").classList.remove('active')
-  let sele = document.querySelectorAll('.slides')
-  let maximumslide = Math.round(sele.scrollwidth / sele.clientwidth) - 1
-  if (desiredslide > maximumslide) {
-    desiredslide = 0
-  }
-  else if (desiredslide < 0) {
-    desiredslide = maximumslide
-  }
-  sele.scrollTo({left:sele.clientwidth * desiredslide, behavior: 'smooth'});
-  dotElement.classList.add("active");
-}
-
-window.slidescroll = () => {
-  let sele = document.querySelectorAll(".slides")
-  let currentslide = Math.round(sele.scrollLeft / sele.clientwidth)
-  document.querySelectorAll(".great_dot .dot.active").classList.remove('active')
-  document.querySelectorAll(".greate_dot .dot")[currentslide].classList.add('active');
-}
-
-window.addEventListener('resize', () => {
-  document.querySelectorAll('.slides').forEach(slider => slider.scrollTo({ left: 0, behaviour:'smooth'}))
-})
-    </script>
-  </body>
-</html>
+    <div class="main">
+      <div class="slides" id="slider2">
+        <div class="slide active"><img src="https://picsum.photos/id/17/1000/600" alt="img1" /></div>
+        <div class="slide"><img src="https://picsum.photos/id/13/1000/500" alt="img2" /></div>
+        <div class="slide"><img src="https://picsum.photos/id/22/1000/500" alt="img3" /></div>
+      </div>
+      <div class="dots" id="dots2"></div>
+    </div>
+    <div class="main">
+      <div class="slides" id="slider3">
+        <div class="slide active"><img src="https://picsum.photos/id/11/1000/500" alt="img1" /></div>
+        <div class="slide"><img src="https://picsum.photos/id/70/1000/500" alt="img2" /></div>
+        <div class="slide"><img src="https://picsum.photos/id/71/1000/500" alt="img3" /></div>
+      </div>
+      <div class="dots" id="dots3"></div>
