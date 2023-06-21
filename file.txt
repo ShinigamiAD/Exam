@@ -1,58 +1,71 @@
- <div class="tes">One Slider Experiment</div>
-    <div class="container">
-        <div class="main">
-            <div class="slides" id="slider1">
-                <div class="slide active"><img src="https://picsum.photos/id/12/1000/500" alt=""></div>
-                <div class="slide"><img src="https://picsum.photos/id/15/1000/500" alt=""></div>
-                <div class="slide"> <img src="https://picsum.photos/id/16/1000/500" alt=""></div>
-            </div>
-            <div class="dots" id="dots1"></div>
-        </div>
-    </div>
+  let touchstartX = 0;
+         let touchendX = 0;
 
-let currentindex1 = 0;
+         const slider = document.getElementById('slider1');
+
+         slider.addEventListener('touchstart', (event)=>{
+            touchstartX = event.touches[0].clientX;
+         });
+
+         slider.addEventListener('touchend',(event)=>{
+            touchendX = event.changedTouches[0].clientX;
+            swipe();
+         })
+
+         function swipe() {
+            const distance = 200;
+            if (touchendX < touchstartX - distance) {
+                nextslide();
+            }
+            if(touchendX > touchstartX + distance){
+                previouslide();
+            }
+         }
+         
+         
+        let currentindex1 = 0;
 
         const slide = document.querySelectorAll('#slider1 .slide');
-      
+
         const dots1 = document.getElementById('dots1');
-       
-        function createdots(container, slideCount ,currentindex) {
+
+
+        function createdots(container, slideCount, currentindex) {
             container.innerHTML = '';
-            for(let i = 0; i < slideCount; i++){
+            for (let i = 0; i < slideCount; i++) {
                 const dot = document.createElement('span');
                 dot.classList.add('dot');
-                if(i === currentindex){
+                if (i === currentindex) {
                     dot.classList.add('active-dot');
                 }
-                dot.addEventListener('click',function(){
+                dot.addEventListener('click', function () {
                     gotoslide(container.id, i);
                 });
                 container.appendChild(dot);
             }
         }
 
-        function updatedots(container,currentindex) {
+        function updatedots(container, currentindex) {
             const dots = container.querySelectorAll('.dot');
             dots.forEach((dot, index) => {
-                if(index === currentindex){
+                if (index === currentindex) {
                     dot.classList.add('active-dot');
-                }else{
+                } else {
                     dot.classList.remove('active-dot');
                 }
             });
         }
 
         function gotoslide(sliderid, index) {
-            const slides = document.querySelectorAll(`#${sliderid} .slide`);
+            const slides = document.querySelectorAll('#slider1 .slide');
             slides[currentindex1].classList.remove('active');
-            
-            if (sliderid === 'slider1') {
+            if (slider1) {
                 currentindex1 = index;
                 slides[currentindex1].classList.add('active');
                 updatedots(dots1, currentindex1);
             }
+          
         }
-
 
         function nextslide() {
             slide[currentindex1].classList.remove('active');
@@ -61,7 +74,7 @@ let currentindex1 = 0;
                 currentindex1 = 0;
             }
             slide[currentindex1].classList.add('active');
-            updatedots(dots1,  currentindex1);
+            updatedots(dots1, currentindex1);
         }
 
         function previouslide() {
@@ -71,11 +84,11 @@ let currentindex1 = 0;
                 currentindex1 = slide.length - 1;
             }
             slide[currentindex1].classList.add('active');
-            updatedots(dots1,  currentindex1);
+            updatedots(dots1, currentindex1);
         }
 
         slide[currentindex1].classList.add('active');
-        
+
         createdots(dots1, slide.length, currentindex1);
 
-        setInterval(nextslide, 2700);
+        // setInterval(nextslide, 2700);
