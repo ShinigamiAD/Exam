@@ -1,7 +1,14 @@
- Uncaught TypeError: Cannot read properties of undefined (reading 'classList') at gotoslide
-                      at HTMLSpanElement.<anonymous> in  gotoslide(container.id, i);
-
-
+ <div class="tes">One Slider Experiment</div>
+    <div class="container">
+        <div class="main">
+            <div class="slides" id="slider1">
+                <div class="slide active"><img src="https://picsum.photos/id/12/1000/500" alt=""></div>
+                <div class="slide"><img src="https://picsum.photos/id/15/1000/500" alt=""></div>
+                <div class="slide"> <img src="https://picsum.photos/id/16/1000/500" alt=""></div>
+            </div>
+            <div class="dots" id="dots1"></div>
+        </div>
+    </div>
 
 let currentindex1 = 0;
 
