@@ -1,285 +1,73 @@
-<!DOCTYPE html>
-<html lang="en">
+  let currentindex1 = 0;
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        .tes {
-            color: #1aa3ff;
-            font-size: 35px;
-            text-align: center;
-        }
-
-        .container {
-            max-width: 60%;
-            margin: 0 auto;
-            margin-bottom: 50px;
-            display: grid;
-            gap: 20px;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-        }
-
-        .main {
-            width: 100%;
-            height: 400px;
-            margin: auto;
-            margin-top: 50px;
-            border: 1px;
-            position: relative;
-            box-shadow: 0px 0px 10px gray;
-            border-radius: 15px;
-        }
-
-        .slide {
-            height: 400px;
-            width: 100%;
-            position: absolute;
-            object-fit: cover;
-            cursor: pointer;
-            overflow: hidden;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .slide img {
-            width: 100%;
-        }
-
-        .slides {
-            display: flex;
-            height: 100%;
-            width: 100%;
-            overflow-x: hidden;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .slide {
-            display: none;
-        }
-
-        .active {
-            display: block;
-        }
-
-        .dots {
-            display: flex;
-            position: absolute;
-            justify-content: center;
-            margin-top: 10px;
-            width: 100%;
-        }
-
-        .dot {
-            width: 15px;
-            height: 15px;
-            border-radius: 60%;
-            background-color: gray;
-            margin: 0 5px;
-            cursor: pointer;
-        }
-
-        .active-dot {
-            background-color: black;
-        }
-
-        @media screen and (max-width:768px) {
-            .container {
-                max-width: 90%;
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  const slide = document.querySelectorAll('#slider1 .slide');
+      
+  const dots1 = document.getElementById('dots1');
+       
+    function createdots(container, slideCount ,currentindex) {
+        container.innerHTML = '';
+        for(let i = 0; i < slideCount; i++){
+            const dot = document.createElement('span');
+            dot.classList.add('dot');
+            if(i === currentindex){
+                dot.classList.add('active-dot');
             }
-
-            .main {
-                border-radius: 15px;
-                height: 400px;
-            }
-        }
-    </style>
-</head>
-
-<body>
-    <div class="tes">Testimonial Sliders</div>
-    <div class="container">
-        <div class="main">
-            <div class="slides" id="slider1">
-                <div class="slide active"><img src="https://picsum.photos/id/12/1000/500" alt="image1" /></div>
-                <div class="slide"><img src="https://picsum.photos/id/15/1000/500" alt="img2" /></div>
-                <div class="slide"><img src="https://picsum.photos/id/16/1000/500" alt="img3" /></div>
-            </div>
-            <div class="dots" id="dots1"></div>
-        </div>
-        <div class="main">
-            <div class="slides" id="slider2">
-                <div class="slide active"><img src="https://picsum.photos/id/17/1000/600" alt="img1" /></div>
-                <div class="slide"><img src="https://picsum.photos/id/13/1000/500" alt="img2" /></div>
-                <div class="slide"><img src="https://picsum.photos/id/22/1000/500" alt="img3" /></div>
-            </div>
-            <div class="dots" id="dots2"></div>
-        </div>
-        <div class="main">
-            <div class="slides" id="slider3">
-                <div class="slide active"><img src="https://picsum.photos/id/11/1000/500" alt="img1" /></div>
-                <div class="slide"><img src="https://picsum.photos/id/70/1000/500" alt="img2" /></div>
-                <div class="slide"><img src="https://picsum.photos/id/71/1000/500" alt="img3" /></div>
-            </div>
-            <div class="dots" id="dots3"></div>
-        </div>
-        <div class="main">
-            <div class="slides" id="slider4">
-                <div class="slide active"><img src="https://picsum.photos/id/29/1000/500" alt="img1" /></div>
-                <div class="slide"><img src="https://picsum.photos/id/28/1000/500" alt="img2" /></div>
-                <div class="slide"><img src="https://picsum.photos/id/27/1000/500" alt="img3" /></div>
-            </div>
-            <div class="dots" id="dots4"></div>
-        </div>
-        <div class="main">
-            <div class="slides" id="slider5">
-                <div class="slide active"><img src="https://picsum.photos/id/28/1000/500" alt="image1" /></div>
-                <div class="slide"><img src="https://picsum.photos/id/93/1000/500" alt="img2" /></div>
-                <div class="slide"><img src="https://picsum.photos/id/74/1000/500" alt="img3" /></div>
-            </div>
-            <div class="dots" id="dots5"></div>
-        </div>
-    </div>
-    <script>
-        let currentindex1 = 0
-        let currentindex2 = 0;
-        let currentindex3 = 0;
-        let currentindex4 = 0;
-        let currentindex5 = 0;
-
-        const slide = document.querySelectorAll("#slider1 .slide");
-        const slide2 = document.querySelectorAll("#slider2 .slide");
-        const slide3 = document.querySelectorAll("#slider3 .slide");
-        const slide4 = document.querySelectorAll("#slider4 .slide");
-        const slide5 = document.querySelectorAll("#slider5 .slide");
-
-
-        const dots1 = document.getElementById("dots1");
-        const dots2 = document.getElementById("dots2");
-        const dots3 = document.getElementById("dots3");
-        const dots4 = document.getElementById("dots4");
-        const dots5 = document.getElementById("dots5");
-
-
-        function createdots(container, slideCount, currentindex) {
-            container.innerHTML = "";
-            for (let i = 0; i < slideCount; i++) {
-                const dot = document.createElement("span");
-                dot.classList.add("dot");
-                if (i === currentindex) {
-                    dot.classList.add("active-dot");
-                }
-                dot.addEventListener("click", function () {
-                    gotoslide(container.id, i);
-                });
-                container.appendChild(dot);
-            }
-        }
-
-        function updatedots(container, currentindex) {
-            const dots = container.querySelectorAll(".dot");
-            dots.forEach((dot, index) => {
-                if (index === currentindex) {
-                    dot.classList.add("active-dot");
-                } else {
-                    dot.classList.remove("active-dot");
-                }
+            dot.addEventListener('click',function(){
+                gotoslide(container.id, i);
             });
+            container.appendChild(dot);
         }
+    }
 
-        function gotoslide(sliderid, index) {
-            const slides = document.querySelectorAll(`#${sliderid} .slide`);
-            slides[currentindex1].classList.remove("active");
-            slides[currentindex2].classList.remove("active");
-
-            if (sliderid === "slider1") {
-                currentindex1 = index;
-                slides[currentindex1].classList.add("active");
-                updatedots(dots1, currentindex1);
-            } else if (sliderid === `slider2`) {
-                currentindex2 = index;
-                slides[currentindex2].classList.add("active");
-                updatedots(dots2, currentindex2);
+    function updatedots(container,currentindex) {
+        const dots = container.querySelectorAll('.dot');
+        dots.forEach((dot, index) => {
+            if(index === currentindex){
+                dot.classList.add('active-dot');
+            }else{
+                dot.classList.remove('active-dot');
             }
+        });
+    }
+
+    function gotoslide(sliderid, index) {
+        const slides = document.querySelectorAll(`#${sliderid} .slide`);
+        slides[currentindex1].classList.remove('active');
+        slides[currentindex2].classList.remove('active');
+
+        if (sliderid === 'slider1') {
+            currentindex1 = index;
+            slides[currentindex1].classList.add('active');
+            updatedots(dots1, currentindex1);
+        }else if(sliderid === `slider2`){
+            currentindex2 = index;
+            slides[currentindex2].classList.add('active');
+            updatedots(dots2, currentindex2);
         }
+    }
 
         function nextslide() {
-            slide[currentindex1].classList.remove("active");
+            slide[currentindex1].classList.remove('active');
             currentindex1++;
             if (currentindex1 >= slide.length) {
                 currentindex1 = 0;
             }
-            slide[currentindex1].classList.add("active");
-            updatedots(dots1, currentindex1);
+            slide[currentindex1].classList.add('active');
+            updatedots(dots1,  currentindex1);
         }
 
-        function nextslide2() {
-            slide2[currentindex2].classList.remove("active");
-            currentindex2++;
-            if (currentindex2 >= slide2.length) {
-                currentindex2 = 0;
+        function previouslide() {
+            slide[currentindex1].classList.remove('active');
+            currentindex1--;
+            if (currentindex1 < 0) {
+                currentindex1 = slide.length - 1;
             }
-            slide2[currentindex2].classList.add("active");
-            updatedots(dots2, currentindex2);
+            slide[currentindex1].classList.add('active');
+            updatedots(dots1,  currentindex1);
         }
-        function nextslide3() {
-            slide3[currentindex3].classList.remove("active");
-            currentindex3++;
-            if (currentindex3 >= slide3.length) {
-                currentindex3 = 0;
-            }
-            slide3[currentindex3].classList.add("active");
-            updatedots(dots3, currentindex3);
-            updatesslides();
-        }
-        function nextslide4() {
-            slide4[currentindex4].classList.remove("active");
-            currentindex4++;
-            if (currentindex4 >= slide4.length) {
-                currentindex4 = 0;
-            }
-            slide4[currentindex4].classList.add("active");
-            updatedots(dots4, currentindex4);
-            updatesslides();
-        }
-        function nextslide5() {
-            slide5[currentindex5].classList.remove("active");
-            currentindex5++;
-            if (currentindex5 >= slide5.length) {
-                currentindex5 = 0;
-            }
-            slide5[currentindex5].classList.add("active");
-            updatedots(dots5, currentindex5);
-        }
-
-        slide[currentindex1].classList.add("active");
-        slide2[currentindex2].classList.add("active");
-        slide3[currentindex3].classList.add("active");
-        slide4[currentindex4].classList.add("active");
-        slide5[currentindex5].classList.add("active");
-
+       
+        slide[currentindex1].classList.add('active');
+        
         createdots(dots1, slide.length, currentindex1);
-        createdots(dots2, slide2.length, currentindex2);
-        createdots(dots3, slide3.length, currentindex3);
-        createdots(dots4, slide4.length, currentindex4);
-        createdots(dots5, slide5.length, currentindex5);
-
-
 
         setInterval(nextslide, 2700);
-        setInterval(nextslide2, 2500);
-        setInterval(nextslide3, 2700);
-        setInterval(nextslide4, 2500);
-        setInterval(nextslide5, 2700);
-
-    </script>
-</body>
-</html>
