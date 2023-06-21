@@ -1,50 +1,46 @@
-  let currentindex1 = 0;
+let currentindex1 = 0;
 
-  const slide = document.querySelectorAll('#slider1 .slide');
+        const slide = document.querySelectorAll('#slider1 .slide');
       
-  const dots1 = document.getElementById('dots1');
+        const dots1 = document.getElementById('dots1');
        
-    function createdots(container, slideCount ,currentindex) {
-        container.innerHTML = '';
-        for(let i = 0; i < slideCount; i++){
-            const dot = document.createElement('span');
-            dot.classList.add('dot');
-            if(i === currentindex){
-                dot.classList.add('active-dot');
+        function createdots(container, slideCount ,currentindex) {
+            container.innerHTML = '';
+            for(let i = 0; i < slideCount; i++){
+                const dot = document.createElement('span');
+                dot.classList.add('dot');
+                if(i === currentindex){
+                    dot.classList.add('active-dot');
+                }
+                dot.addEventListener('click',function(){
+                    gotoslide(container.id, i);
+                });
+                container.appendChild(dot);
             }
-            dot.addEventListener('click',function(){
-                gotoslide(container.id, i);
+        }
+
+        function updatedots(container,currentindex) {
+            const dots = container.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                if(index === currentindex){
+                    dot.classList.add('active-dot');
+                }else{
+                    dot.classList.remove('active-dot');
+                }
             });
-            container.appendChild(dot);
         }
-    }
 
-    function updatedots(container,currentindex) {
-        const dots = container.querySelectorAll('.dot');
-        dots.forEach((dot, index) => {
-            if(index === currentindex){
-                dot.classList.add('active-dot');
-            }else{
-                dot.classList.remove('active-dot');
+        function gotoslide(sliderid, index) {
+            const slides = document.querySelectorAll(`#${sliderid} .slide`);
+            slides[currentindex1].classList.remove('active');
+            
+            if (sliderid === 'slider1') {
+                currentindex1 = index;
+                slides[currentindex1].classList.add('active');
+                updatedots(dots1, currentindex1);
             }
-        });
-    }
-
-    function gotoslide(sliderid, index) {
-        const slides = document.querySelectorAll(`#${sliderid} .slide`);
-        slides[currentindex1].classList.remove('active');
-        slides[currentindex2].classList.remove('active');
-
-        if (sliderid === 'slider1') {
-            currentindex1 = index;
-            slides[currentindex1].classList.add('active');
-            updatedots(dots1, currentindex1);
-        }else if(sliderid === `slider2`){
-            currentindex2 = index;
-            slides[currentindex2].classList.add('active');
-            updatedots(dots2, currentindex2);
         }
-    }
+
 
         function nextslide() {
             slide[currentindex1].classList.remove('active');
@@ -65,7 +61,7 @@
             slide[currentindex1].classList.add('active');
             updatedots(dots1,  currentindex1);
         }
-       
+
         slide[currentindex1].classList.add('active');
         
         createdots(dots1, slide.length, currentindex1);
