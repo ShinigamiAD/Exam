@@ -1,100 +1,96 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        .main {
-            width: 70%;
-            height: 500px;
-            margin: auto;
-            margin-top: 100px;
-            border: 1px;
-            position: relative;
-            box-shadow: 0px 0px 10px gray;
-            overflow: hidden;
-        }
-
-        .slide {
-            height: 100%;
-            width: 100%;
-            position: absolute;
-        }
-
-        .slides {
-            display: flex;
-            height: 100%;
-            width: 100%;
-        }
-
-        .nav {
-            text-align: center;
-            margin-top: 15px;
-        }
-
-        .nav button {
-            font-size: 20px;
-            padding: 5px;
-        }
-        .slide{
-            display: none;
-        }
-        .active{
-            display: block;
-        }
-    </style>
-</head>
-
-<body>
-    <div class="main">
-        <div class="slides">
-            <img src="https://picsum.photos/id/220/1000/500" alt="" class="slide active">
-            <img src="https://picsum.photos/id/221/1000/500" alt="" class="slide">
-            <img src="https://picsum.photos/id/228/1000/500" alt="" class="slide">
-        </div>
-    </div>
+function initializeSliders() {
+    const sliders = document.querySelectorAll('.sliderContainer');
   
-</body>
-<script>
-    let currentindex = 0;
-   
-        const slide = document.querySelectorAll("img");
-        // const prevButton = document.getElementById("prev");
-        // const nextButton = document.getElementById("next");
-       
-       function nextslide() {
-        slide[currentindex].classList.remove("active");
-        currentindex++;
-        if (currentindex >= slide.length) {
-            currentindex = 0;
+    sliders.forEach((slider) => {
+      const sliderId = slider.getAttribute('id');
+      const slides = slider.querySelectorAll('.slide');
+      const dotsContainer = document.getElementById('dots1');
+  
+      if (!dotsContainer) {
+        console.error(`Dots element not found for slider with id: ${sliderId}`);
+        return;
+      }
+  
+      let currentIndex = 0;
+  
+      function createDots() {
+        dotsContainer.innerHTML = '';
+        for (let i = 0; i < slides.length; i++) {
+          const dot = document.createElement('span');
+          dot.classList.add('dot');
+          if (i === currentIndex) {
+            dot.classList.add('active-dot');
+          }
+          dot.addEventListener('click', () => {
+            goToSlide(i);
+          });
+          dotsContainer.appendChild(dot);
         }
-        slide[currentindex].classList.add("active");
-       }
-
-       function previouslide() {
-        slide[currentindex].classList.remove("active");
-        currentindex--;
-        if (currentindex < 0) {
-            currentindex = slide.length - 1;
+      }
+  
+      function updateDots() {
+        const dots = dotsContainer.querySelectorAll('.dot');
+        dots.forEach((dot, index) => {
+          if (index === currentIndex) {
+            dot.classList.add('active-dot');
+          } else {
+            dot.classList.remove('active-dot');
+          }
+        });
+      }
+  
+      function goToSlide(index) {
+        slides[currentIndex].classList.remove('active');
+        currentIndex = index;
+        slides[currentIndex].classList.add('active');
+        updateDots();
+      }
+  
+      function nextSlide() {
+        slides[currentIndex].classList.remove('active');
+        currentIndex++;
+        if (currentIndex >= slides.length) {
+          currentIndex = 0;
         }
-        slide[currentindex].classList.add("active");
-       }
-
-    //    nextButton.addEventListener("click",nextslide);
-    //    prevButton.addEventListener("click",previouslide);
-
-       slide[currentindex].classList.add("active");
-
-       setInterval(nextslide,3000);
-</script>
-
-</html>
+        slides[currentIndex].classList.add('active');
+        updateDots();
+      }
+  
+      function previousSlide() {
+        slides[currentIndex].classList.remove('active');
+        currentIndex--;
+        if (currentIndex < 0) {
+          currentIndex = slides.length - 1;
+        }
+        slides[currentIndex].classList.add('active');
+        updateDots();
+      }
+  
+      let touchstartX = 0;
+      let touchendX = 0;
+  
+      slider.addEventListener('touchstart', (event) => {
+        touchstartX = event.touches[0].clientX;
+      });
+  
+      slider.addEventListener('touchend', (event) => {
+        touchendX = event.changedTouches[0].clientX;
+        swipe();
+      });
+  
+      function swipe() {
+        const distance = 100;
+        if (touchendX < touchstartX - distance) {
+          nextSlide();
+        }
+        if (touchendX > touchstartX + distance) {
+          previousSlide();
+        }
+      }
+  
+      slides[currentIndex].classList.add('active');
+      createDots();
+    });
+  }
+  
+  initializeSliders(); 
