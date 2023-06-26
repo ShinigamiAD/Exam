@@ -1,96 +1,126 @@
-function initializeSliders() {
-    const sliders = document.querySelectorAll('.sliderContainer');
-  
-    sliders.forEach((slider) => {
-      const sliderId = slider.getAttribute('id');
-      const slides = slider.querySelectorAll('.slide');
-      const dotsContainer = document.getElementById('dots1');
-  
-      if (!dotsContainer) {
-        console.error(`Dots element not found for slider with id: ${sliderId}`);
-        return;
-      }
-  
-      let currentIndex = 0;
-  
-      function createDots() {
-        dotsContainer.innerHTML = '';
-        for (let i = 0; i < slides.length; i++) {
-          const dot = document.createElement('span');
-          dot.classList.add('dot');
-          if (i === currentIndex) {
-            dot.classList.add('active-dot');
-          }
-          dot.addEventListener('click', () => {
-            goToSlide(i);
-          });
-          dotsContainer.appendChild(dot);
+<div class="owl-carousel">
+    <div class="item">
+      <a href="#">
+      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/43033/slider_bags.jpg" alt="" />
+      <div class="inner">
+        <a href="#">The Erling Bag</a>
+      </div>
+      </a>
+  </div>
+      <div class="item black">
+      <a href="#">
+      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/43033/slider_book_cover.jpg" alt="" />
+      <div class="inner">
+        <a href="#">Summer Book Series</a>
+      </div>
+      </a>
+  </div>
+      <div class="item">
+      <a href="#">
+      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/43033/slider_bags.jpg" alt="" />
+      <div class="inner">
+        <a href="#">The Erling Bag</a>
+      </div>
+      </a>
+  </div>
+      <div class="item black">
+      <a href="#">
+      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/43033/slider_book_cover.jpg" alt="" />
+      <div class="inner">
+        <a href="#">Summer Book Series</a>
+      </div>
+      </a>
+  </div>
+      <div class="item">
+      <a href="#">
+      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/43033/slider_bags.jpg" alt="" />
+      <div class="inner">
+        <a href="#">The Erling Bag</a>
+      </div>
+      </a>
+  </div>
+   <div class="item black">
+      <a href="#">
+      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/43033/slider_book_cover.jpg" alt="" />
+      <div class="inner">
+        <a href="#">Summer Book Series</a>
+      </div>
+      </a>
+  </div>
+</div>
+css of above html code is 
+.item{
+  opacity:0.4;
+  transition:.4s ease all;
+  margin:0 20px;
+  transform:scale(.8);
+}
+@media(max-width:1000px){
+  .item{margin:0; transform:scale(.9)}
+}
+.active .item{
+  opacity:1;
+  transform:scale(1);
+} 
+body{
+  padding:0;
+  margin:80px 0 0 0;
+  font-family:Merriweather;
+  background:#f0e8d5;
+}
+
+.owl-item {
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translateZ(0) scale(1.0, 1.0);
+}
+
+.inner{position:absolute; bottom:30px; left:0; right:0; text-align:center;}
+.inner a{color:#fff; text-decoration:none; border-bottom:2px solid rgba(255,255,255,0.5); transition:.3s ease border-color}
+.inner a:hover{border-color:#fff;}
+.black .inner a{color:#000; border-color:rgba(0,0,0,0.4)}
+.black .inner a:hover{border-color:#000;}
+
+.owl-carousel:after{content:""; display:block; position:absolute; width:8%; top:0; bottom:0; left:50%; margin-left:-4%; pointer-events: none; background:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/43033/aett_logo_slider.png) no-repeat center 50%; background-size:100% auto;
+}
+
+.owl-controls{position:absolute; margin-top:300px;}
+script of this code is 
+$('.owl-carousel').owlCarousel({
+    stagePadding: 200,
+    loop:true,
+    margin:10,
+    nav:false,
+    items:2,
+    lazyLoad: true,
+    nav:true,
+  responsive:{
+        0:{
+            items:1,
+            stagePadding: 60
+        },
+        600:{
+            items:1,
+            stagePadding: 100
+        },
+        1000:{
+            items:1,
+            stagePadding: 200
+        },
+        1200:{
+            items:1,
+            stagePadding: 250
+        },
+        1400:{
+            items:1,
+            stagePadding: 300
+        },
+        1600:{
+            items:1,
+            stagePadding: 350
+        },
+        1800:{
+            items:3,
+            stagePadding: 100
         }
-      }
-  
-      function updateDots() {
-        const dots = dotsContainer.querySelectorAll('.dot');
-        dots.forEach((dot, index) => {
-          if (index === currentIndex) {
-            dot.classList.add('active-dot');
-          } else {
-            dot.classList.remove('active-dot');
-          }
-        });
-      }
-  
-      function goToSlide(index) {
-        slides[currentIndex].classList.remove('active');
-        currentIndex = index;
-        slides[currentIndex].classList.add('active');
-        updateDots();
-      }
-  
-      function nextSlide() {
-        slides[currentIndex].classList.remove('active');
-        currentIndex++;
-        if (currentIndex >= slides.length) {
-          currentIndex = 0;
-        }
-        slides[currentIndex].classList.add('active');
-        updateDots();
-      }
-  
-      function previousSlide() {
-        slides[currentIndex].classList.remove('active');
-        currentIndex--;
-        if (currentIndex < 0) {
-          currentIndex = slides.length - 1;
-        }
-        slides[currentIndex].classList.add('active');
-        updateDots();
-      }
-  
-      let touchstartX = 0;
-      let touchendX = 0;
-  
-      slider.addEventListener('touchstart', (event) => {
-        touchstartX = event.touches[0].clientX;
-      });
-  
-      slider.addEventListener('touchend', (event) => {
-        touchendX = event.changedTouches[0].clientX;
-        swipe();
-      });
-  
-      function swipe() {
-        const distance = 100;
-        if (touchendX < touchstartX - distance) {
-          nextSlide();
-        }
-        if (touchendX > touchstartX + distance) {
-          previousSlide();
-        }
-      }
-  
-      slides[currentIndex].classList.add('active');
-      createDots();
-    });
-  }
-  
-  initializeSliders(); 
+    }
+})
