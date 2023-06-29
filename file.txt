@@ -1,18 +1,4 @@
-window.prevSlide = (sliderContainer) => {
-        let currentSlide = sliderContainer.querySelector(".thumbnail-image.active img")
-        let slides = sliderContainer.querySelectorAll(".thumbnail-image img")
-        let currentIndex = Array.prototype.slice.call(slides).indexOf(currentSlide) - 1
-        let mainImage = sliderContainer.querySelector(".card-img img")
-        if (currentIndex < 0) {
-            currentIndex = slides.length - 1
-        }	
-        currentSlide.parentNode.classList.remove('active')
-        slides[currentIndex].parentNode.classList.add('active')
-        mainImage.srcset = slides[currentIndex].dataset.srcset
-        mainImage.src = slides[currentIndex].dataset.src
-        mainImage.alt = slides[currentIndex].alt	
-        mainImage.width = slides[currentIndex].dataset.width
-        mainImage.height = slides[currentIndex].dataset.height
-    
-        currentSlide.parentNode.parentNode.scrollTo({ left: currentSlide.clientWidth * currentIndex, behavior: 'smooth' })
-    }
+
+thumbnail.js:49 Uncaught TypeError: Cannot read properties of null (reading 'parentNode')
+    at window.prevSlide (thumbnail.js:49:18)
+    at HTMLSpanElement.onclick (thumbnail.html:18:96)
