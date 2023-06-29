@@ -2,3 +2,41 @@
 thumbnail.js:49 Uncaught TypeError: Cannot read properties of null (reading 'parentNode')
     at window.prevSlide (thumbnail.js:49:18)
     at HTMLSpanElement.onclick (thumbnail.html:18:96)
+
+ <div class="card-carousel">
+        <div class="card-img">
+            <img src="https://picsum.photos/id/12/700/500" alt="" class="static-img">
+            <div class="actions">
+                <span class="prev" onclick="prevSlide(event.target.closest('.card-carousel'))">
+                    <span class="icon material-icons material-symbols-outlined">chevron_left</span>
+                </span>
+                <span class="next" onclick="nextSlide(event.target.closest('.card-carousel'))">
+                    <span class="icon material-icons material-symbols-outlined" data-cid-7="">chevron_right</span>
+                </span>
+            </div>
+        </div>
+        <div class="thumbnails">
+            <div class="tumbnail_image active">
+                <img src="https://picsum.photos/id/12/200/133" alt=""
+                    onclick="activateSlide(event.target.closest('.card-carousel'),event.target)">
+            </div>
+            <div class="tumbnail_image">
+                <img src="https://picsum.photos/id/16/200/133" alt=""
+                    onclick="activateSlide(event.target.closest('.card-carousel'),event.target)">
+            </div>
+            <div class="tumbnail_image">
+                <img src="https://picsum.photos/id/29/200/133" alt=""
+                    onclick="activateSlide(event.target.closest('.card-carousel'),event.target)">
+            </div>
+            <div class="tumbnail_image">
+                <img src="https://picsum.photos/id/147/200/133" alt=""
+                    onclick="activateSlide(event.target.closest('.card-carousel'),event.target)">
+            </div>
+            <div class="tumbnail_image">
+                <img src="https://picsum.photos/id/392/200/133" alt=""
+                    onclick="activateSlide(event.target.closest('.card-carousel'),event.target)">
+            </div>
+            <div class="tumbnail_image">
+                <img src="https://picsum.photos/id/74/200/133" alt=""
+                    onclick="activateSlide(event.target.closest('.card-carousel'),event.target)">
+            </div>
