@@ -1,94 +1,15 @@
-  let touchstartX = 0;
-         let touchendX = 0;
-
-         const slider = document.getElementById('slider1');
-
-         slider.addEventListener('touchstart', (event)=>{
-            touchstartX = event.touches[0].clientX;
-         });
-
-         slider.addEventListener('touchend',(event)=>{
-            touchendX = event.changedTouches[0].clientX;
-            swipe();
-         })
-
-         function swipe() {
-            const distance = 200;
-            if (touchendX < touchstartX - distance) {
-                nextslide();
-            }
-            if(touchendX > touchstartX + distance){
-                previouslide();
-            }
-         }
-         
-         
-        let currentindex1 = 0;
-
-        const slide = document.querySelectorAll('#slider1 .slide');
-
-        const dots1 = document.getElementById('dots1');
-
-
-        function createdots(container, slideCount, currentindex) {
-            container.innerHTML = '';
-            for (let i = 0; i < slideCount; i++) {
-                const dot = document.createElement('span');
-                dot.classList.add('dot');
-                if (i === currentindex) {
-                    dot.classList.add('active-dot');
-                }
-                dot.addEventListener('click', function () {
-                    gotoslide(container.id, i);
-                });
-                container.appendChild(dot);
-            }
-        }
-
-        function updatedots(container, currentindex) {
-            const dots = container.querySelectorAll('.dot');
-            dots.forEach((dot, index) => {
-                if (index === currentindex) {
-                    dot.classList.add('active-dot');
-                } else {
-                    dot.classList.remove('active-dot');
-                }
-            });
-        }
-
-        function gotoslide(sliderid, index) {
-            const slides = document.querySelectorAll('#slider1 .slide');
-            slides[currentindex1].classList.remove('active');
-            if (slider1) {
-                currentindex1 = index;
-                slides[currentindex1].classList.add('active');
-                updatedots(dots1, currentindex1);
-            }
-          
-        }
-
-        function nextslide() {
-            slide[currentindex1].classList.remove('active');
-            currentindex1++;
-            if (currentindex1 >= slide.length) {
-                currentindex1 = 0;
-            }
-            slide[currentindex1].classList.add('active');
-            updatedots(dots1, currentindex1);
-        }
-
-        function previouslide() {
-            slide[currentindex1].classList.remove('active');
-            currentindex1--;
-            if (currentindex1 < 0) {
-                currentindex1 = slide.length - 1;
-            }
-            slide[currentindex1].classList.add('active');
-            updatedots(dots1, currentindex1);
-        }
-
-        slide[currentindex1].classList.add('active');
-
-        createdots(dots1, slide.length, currentindex1);
-
-        // setInterval(nextslide, 2700);
+ window.activateSlide = (sliderContainer, currentSlide) => {
+        sliderContainer.querySelector(".thumbnails .thumbnail-image.active").classList.remove('active')
+        let slides = sliderContainer.querySelectorAll(".thumbnail-image img")	
+        let currentIndex = Array.prototype.slice.call(slides).indexOf(currentSlide)
+        let mainImage = sliderContainer.querySelector(".card-img img")
+    
+        mainImage.alt = currentSlide.alt
+        mainImage.srcset = currentSlide.dataset.srcset	
+        mainImage.src = currentSlide.dataset.src
+        mainImage.width = currentSlide.dataset.width
+        mainImage.height = currentSlide.dataset.height
+        currentSlide.parentNode.classList.add('active')
+    
+        currentSlide.parentNode.parentNode.scrollTo({ left: currentSlide.parentNode.clientWidth * currentIndex, behavior: 'smooth' })
+    }
