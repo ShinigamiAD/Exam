@@ -1,7 +1,8 @@
 
-thumbnail.js:49 Uncaught TypeError: Cannot read properties of null (reading 'parentNode')
-    at window.prevSlide (thumbnail.js:49:18)
+thumbnail.js:51 Uncaught TypeError: Cannot read properties of null (reading 'parentNode')
+    at window.prevSlide (thumbnail.js:51:22)
     at HTMLSpanElement.onclick (thumbnail.html:18:96)
+
 
  <div class="card-carousel">
         <div class="card-img">
