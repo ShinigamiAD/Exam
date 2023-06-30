@@ -28,8 +28,24 @@ window.siteSlideshowChangeSlide = (slideshowElement, n) => {  
   if (is_mobile) {
     totalWidth = slidesElement.scrollWidth
   }
+  
+  if((scrollLeft + item.clientWidth + (gapSlideSize * showCount)) >= totalWidth){
+    scrollLeft = 0  
+  }
+  else if((scrollLeft + (item.clientWidth * groupSize)) < 0 ){
+    scrollLeft = slidesElement.scrollWidth
+  }
+    
+  const element = document.querySelector('.slider')
 
-<div class="carousel">
+  slidesElement.scrollTo({left: scrollLeft, behavior: 'smooth'})
+}
+
+convert above code to simple javascript.
+
+
+
+ <div class="carousel">
         <div class="slider">
             <div class="item">
                 <figure>
@@ -68,25 +84,4 @@ window.siteSlideshowChangeSlide = (slideshowElement, n) => {  
         </div>
     </div>
 
-
-
-
-
-
-
-
-
-
-
-  
-  if((scrollLeft + item.clientWidth + (gapSlideSize * showCount)) >= totalWidth){
-    scrollLeft = 0  
-  }
-  else if((scrollLeft + (item.clientWidth * groupSize)) < 0 ){
-    scrollLeft = slidesElement.scrollWidth
-  }
-    
-  const element = document.querySelector('.slider')
-
-  slidesElement.scrollTo({left: scrollLeft, behavior: 'smooth'})
-}
+above is the html code for refrence and convert the apply above code to converted javascript code.
