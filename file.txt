@@ -41,10 +41,6 @@ window.siteSlideshowChangeSlide = (slideshowElement, n) => {  
   slidesElement.scrollTo({left: scrollLeft, behavior: 'smooth'})
 }
 
-convert above code to simple javascript.
-
-
-
  <div class="carousel">
         <div class="slider">
             <div class="item">
@@ -84,4 +80,4 @@ convert above code to simple javascript.
         </div>
     </div>
 
-above is the html code for refrence and convert the apply above code to converted javascript code.
+above is the html code so apply above code given javascript code.
