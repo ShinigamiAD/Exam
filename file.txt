@@ -28,6 +28,56 @@ window.siteSlideshowChangeSlide = (slideshowElement, n) => {  
   if (is_mobile) {
     totalWidth = slidesElement.scrollWidth
   }
+
+<div class="carousel">
+        <div class="slider">
+            <div class="item">
+                <figure>
+                    <img src="https://picsum.photos/id/384/700/500" alt="">
+                </figure>
+            </div>
+            <div class="item">
+                <figure>
+                    <img src="https://picsum.photos/id/16/700/500" alt="">
+                </figure>
+            </div>
+            <div class="item">
+                <figure>
+                    <img src="https://picsum.photos/id/29/700/500" alt="">
+                </figure>
+            </div>
+            <div class="item">
+                <figure>
+                    <img src="https://picsum.photos/id/147/700/500" alt="">
+                </figure>
+            </div>
+            <div class="item">
+                <figure>
+                    <img src="https://picsum.photos/id/392/700/500" alt="">
+                </figure>
+            </div>
+            <div class="item">
+                <figure>
+                    <img src="https://picsum.photos/id/74/700/500" alt="">
+                </figure>
+            </div>
+        </div>
+        <div class="nav">
+            <button id="prev">Previous</button>
+            <button id="next">Next</button>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
   
   if((scrollLeft + item.clientWidth + (gapSlideSize * showCount)) >= totalWidth){
     scrollLeft = 0  
