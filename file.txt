@@ -17,5 +17,3 @@ currentSlide.parentNode.parentNode.scrollTo({ left: currentSlide.clientWidth * c
 
 
 }
-
-currentSlide.parentNode.parentNode.scrollTo({ left: currentSlide.parentNode.clientWidth * currentIndex, behavior: 'smooth' }) scrolls the slider container horizontally to the position of the currentSlide. It calculates the scroll position by multiplying the width of the parent node of the currentSlide by the currentIndex. The scrollTo method -->
