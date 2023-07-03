@@ -1,51 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        html{
-            scroll-snap-type: mandatory;
-            scroll-snap-type: y mandatory;
+ window.activateSlide = (sliderContainer, currentSlide) => {
+    sliderContainer.querySelector(".thumbnails .tumbnail_image.active").classList.remove('active')
+    let slides = sliderContainer.querySelectorAll(".tumbnail_image img")	
+    console.log(slides)
+    let currentIndex = Array.prototype.slice.call(slides).indexOf(currentSlide)
+    console.log(currentIndex);
+    let mainImage = sliderContainer.querySelector(".card-img img");
+
+    mainImage.alt = currentSlide.alt
+
+    mainImage.srcset = currentSlide.srcset	
+
+    mainImage.src = currentSlide.src.replace('/200/133', '/700/500');
+
+    mainImage.width = currentSlide.width
+    mainImage.height = currentSlide.height
+    currentSlide.parentNode.classList.add('active');
+
+    currentSlide.parentNode.parentNode.scrollTo({ left: currentSlide.parentNode.clientWidth * currentIndex, behavior: 'smooth' })
+}
+
+window.prevSlide = (sliderContainer) => {
+        let currentSlide = sliderContainer.querySelector(".tumbnail_image.active img")
+        let slides = sliderContainer.querySelectorAll(".tumbnail_image img")
+        let currentIndex = Array.prototype.slice.call(slides).indexOf(currentSlide) - 1
+        let mainImage = sliderContainer.querySelector(".card-img img")
+        if (currentIndex < 0) {
+            currentIndex = slides.length - 1
+        }	
+        mainImage.alt = slides[currentIndex].alt
+        mainImage.srcset = slides[currentIndex].srcset	
+        mainImage.src = slides[currentIndex].src.replace('/200/133', '/700/500')
+        slides[currentIndex].parentNode.classList.add('active')
+    
+        currentSlide.parentNode.parentNode.scrollTo({ left: currentSlide.clientWidth * currentIndex, behavior: 'smooth' })
+    }
+  
+    window.nextSlide = (sliderContainer) => {
+        let currentSlide = sliderContainer.querySelector(".tumbnail_image.active img")
+        let slides = sliderContainer.querySelectorAll(".tumbnail_image img")
+        let currentIndex = Array.prototype.slice.call(slides).indexOf(currentSlide) + 1
+        let mainImage = sliderContainer.querySelector(".card-img img")	
+        if (currentIndex == slides.length) {
+            currentIndex = 0
         }
-        section {
-            padding: 1rem;
-            height: 100%;
-            width: 100vh;
-            scroll-snap-align: start;
-            align-items: center;
-            text-align: center;
-        }
-        img{
-            margin-top: 50px;
-            border: 2px solid black;
-        }
-        @media screen and (max-width:768px) {
-            section{
-              width: 80%;
-              display: grid;
-            
-            }
-            img{
-                width: 100%;
-                height: 100%;
-            }
-        }
-    </style>
-</head>
-<body>
-    <section>
-        <img src="https://picsum.photos/id/77/1000/500" alt="">
-    </section>
-    <section>
-        <img src="https://picsum.photos/id/74/1000/500" alt="">
-    </section>  
-    <section>
-        <img src="https://picsum.photos/id/87/1000/500" alt="">
-    </section>
-    <section>
-        <img src="https://picsum.photos/id/147/1000/500" alt="">
-    </section>
-</body>
-</html>
+        currentSlide.parentNode.classList.remove('active')
+        slides[currentIndex].parentNode.classList.add('active')
+        
+        mainImage.srcset = slides[currentIndex].srcset
+        mainImage.src = slides[currentIndex].src.replace('/200/133', '/700/500')
+        mainImage.alt = slides[currentIndex].alt
+        currentSlide.parentNode.parentNode.scrollTo({ left: currentSlide.clientWidth * currentIndex, behavior: 'smooth' })
+    
+    
+    }
