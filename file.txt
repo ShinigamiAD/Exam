@@ -1,83 +1,51 @@
-window.siteSlideshowChangeSlide = (slideshowElement, n) => {  
-  let slidesElement = slideshowElement.querySelector('.slider')  
-  let item = slidesElement.querySelector('.item')
-  
-  const is_desktop  = window.matchMedia('(min-width: 1281px)').matches
-  const is_tablet   = window.matchMedia('(min-width: 601px) and (max-width: 1280px)').matches
-  const is_mobile   = window.matchMedia('(min-width: 320px) and (max-width: 600px)').matches
-  
-  let viewSlides = JSON.parse(slideshowElement.dataset.viewSlides)
-  let showCount;
-  let groupSize;
-  if (is_desktop) {
-    showCount = viewSlides?.desktop
-    groupSize = (showCount - (showCount - 1))
-  }
-  if (is_tablet) {
-    showCount = viewSlides?.tablet
-    groupSize = (showCount - (showCount - 1))
-  }
-  if (is_mobile) {
-    showCount = viewSlides?.mobile
-    groupSize = showCount - 1
-  }
-  
-  let gapSlideSize = parseFloat(window.getComputedStyle(slidesElement,null).getPropertyValue("gap"))  
-  let scrollLeft = slidesElement.scrollLeft + (item.clientWidth * groupSize * n) + (n * gapSlideSize)
-  let totalWidth = slidesElement.scrollWidth - ((item.clientWidth * (groupSize)) + (gapSlideSize * (groupSize)));
-  if (is_mobile) {
-    totalWidth = slidesElement.scrollWidth
-  }
-  
-  if((scrollLeft + item.clientWidth + (gapSlideSize * showCount)) >= totalWidth){
-    scrollLeft = 0  
-  }
-  else if((scrollLeft + (item.clientWidth * groupSize)) < 0 ){
-    scrollLeft = slidesElement.scrollWidth
-  }
-    
-  const element = document.querySelector('.slider')
-
-  slidesElement.scrollTo({left: scrollLeft, behavior: 'smooth'})
-}
-
- <div class="carousel">
-        <div class="slider">
-            <div class="item">
-                <figure>
-                    <img src="https://picsum.photos/id/384/700/500" alt="">
-                </figure>
-            </div>
-            <div class="item">
-                <figure>
-                    <img src="https://picsum.photos/id/16/700/500" alt="">
-                </figure>
-            </div>
-            <div class="item">
-                <figure>
-                    <img src="https://picsum.photos/id/29/700/500" alt="">
-                </figure>
-            </div>
-            <div class="item">
-                <figure>
-                    <img src="https://picsum.photos/id/147/700/500" alt="">
-                </figure>
-            </div>
-            <div class="item">
-                <figure>
-                    <img src="https://picsum.photos/id/392/700/500" alt="">
-                </figure>
-            </div>
-            <div class="item">
-                <figure>
-                    <img src="https://picsum.photos/id/74/700/500" alt="">
-                </figure>
-            </div>
-        </div>
-        <div class="nav">
-            <button id="prev">Previous</button>
-            <button id="next">Next</button>
-        </div>
-    </div>
-
-above is the html code so apply above code given javascript code.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html{
+            scroll-snap-type: mandatory;
+            scroll-snap-type: y mandatory;
+        }
+        section {
+            padding: 1rem;
+            height: 100%;
+            width: 100vh;
+            scroll-snap-align: start;
+            align-items: center;
+            text-align: center;
+        }
+        img{
+            margin-top: 50px;
+            border: 2px solid black;
+        }
+        @media screen and (max-width:768px) {
+            section{
+              width: 80%;
+              display: grid;
+            
+            }
+            img{
+                width: 100%;
+                height: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <img src="https://picsum.photos/id/77/1000/500" alt="">
+    </section>
+    <section>
+        <img src="https://picsum.photos/id/74/1000/500" alt="">
+    </section>  
+    <section>
+        <img src="https://picsum.photos/id/87/1000/500" alt="">
+    </section>
+    <section>
+        <img src="https://picsum.photos/id/147/1000/500" alt="">
+    </section>
+</body>
+</html>
