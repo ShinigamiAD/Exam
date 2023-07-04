@@ -67,4 +67,4 @@ window.allinone = (sliderContainer,direction)=>{
     currentSlide.parentNode.parentNode.scrollTo({left: currentSlide.clientWidth * currentIndex, behaviour: 'smooth'});
 }
 
-can you implement the slide change by keyboard to above javascript code and hide the scroll-bar from the screen.
+can you more optimized above two functions and make it more sort 
