@@ -1,19 +1,52 @@
-window.nextSlide = (sliderContainer) => {
-let currentSlide = sliderContainer.querySelector(".tumbnail_image.active img")
-let slides = sliderContainer.querySelectorAll(".tumbnail_image img")
-let currentIndex = Array.prototype.slice.call(slides).indexOf(currentSlide) + 1
-let mainImage = sliderContainer.querySelector(".card-img img")	
+ <div class="card-carousel">
+        <div class="card-img">
+            <img src="https://picsum.photos/id/12/700/500" alt="" class="static-img">
+            <div class="actions">
+                <span class="prev" onclick="prevSlide(event.target.closest('.card-carousel'))">
+                    <span class="icon material-icons material-symbols-outlined">chevron_left</span>
+                </span>
+                <span class="next" onclick="nextSlide(event.target.closest('.card-carousel'))">
+                    <span class="icon material-icons material-symbols-outlined" data-cid-7="">chevron_right</span>
+                </span>
+            </div>
+        </div>
+        <div class="thumbnails">
+            <div class="tumbnail_image active">
+                <img src="https://picsum.photos/id/12/200/133" alt=""
+                    onclick="activateSlide(event.target.closest('.card-carousel'),event.target)">   
+            </div>
+            <div class="tumbnail_image">
+                <img src="https://picsum.photos/id/16/200/133" alt=""
+                    onclick="activateSlide(event.target.closest('.card-carousel'),event.target)">
+            </div>
+            <div class="tumbnail_image">
+                <img src="https://picsum.photos/id/29/200/133" alt=""
+                    onclick="activateSlide(event.target.closest('.card-carousel'),event.target)">
+            </div>
+            <div class="tumbnail_image">
+                <img src="https://picsum.photos/id/147/200/133" alt=""
+                    onclick="activateSlide(event.target.closest('.card-carousel'),event.target)">
+            </div>
+            <div class="tumbnail_image">
+                <img src="https://picsum.photos/id/392/200/133" alt=""
+                    onclick="activateSlide(event.target.closest('.card-carousel'),event.target)">
+            </div>
 
-if (currentIndex == slides.length) {
-currentIndex = 0
-}
-currentSlide.parentNode.classList.remove('active')
-slides[currentIndex].parentNode.classList.add('active')
+Above html code is refrence for below javascript code  
 
-mainImage.srcset = slides[currentIndex].srcset
-mainImage.src = slides[currentIndex].src.replace('/200/133', '/700/500')
-mainImage.alt = slides[currentIndex].alt
-currentSlide.parentNode.parentNode.scrollTo({ left: currentSlide.clientWidth * currentIndex, behavior: 'smooth' })
+window.prevSlide = (sliderContainer) => {
+        let currentSlide = sliderContainer.querySelector(".tumbnail_image.active img")
+        let slides = sliderContainer.querySelectorAll(".tumbnail_image img")
+        let currentIndex = Array.prototype.slice.call(slides).indexOf(currentSlide) - 1
+        
+        let mainImage = sliderContainer.querySelector(".card-img img")
+        if (currentIndex < 0) {
+            currentIndex = slides.length - 1
+        }	
+        mainImage.src = slides[currentIndex].src.replace('/200/133', '/700/500')
+        slides[currentIndex].parentNode.classList.add('active')
+        currentSlide.parentNode.parentNode.scrollTo({ left: currentSlide.clientWidth * currentIndex, behavior: 'smooth' })
+    }
 
-
-}
+Optimised above javascript code and make it sort and easy
+  
