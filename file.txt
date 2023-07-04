@@ -34,44 +34,60 @@
 
 Above html code is refrence for below javascript code  
 
-window.prevSlide = (sliderContainer) => {
-    let currentSlide = sliderContainer.querySelector(".tumbnail_image.active img")
-    let slides = sliderContainer.querySelectorAll(".tumbnail_image img")
-    let currentIndex = Array.from(slides).indexOf(currentSlide) - 1
+ body {
+            overflow: hidden;
+        }
 
+        .container {
+            width: 100%;
+            margin: 5% auto;
+            box-sizing: border-box;
+            padding: 0;
+        }
 
-    let mainImage = sliderContainer.querySelector(".card-img img")
-    if (currentIndex < 0) {
-        currentIndex = slides.length - 1
-    }
+        .slider .slider_cover {
+            position: relative;
+            display: flex;
+            overflow: hidden;
+            scroll-snap-type: x mandatory;
 
-    slides.forEach((slide) => {
-        slide.parentNode.classList.remove('active')
-    });
+        }
 
+        img {
+            object-fit: cover;
+        }
 
-    mainImage.src = slides[currentIndex].src.replace('/200/133', '/700/500')
-    slides[currentIndex].parentNode.classList.add('active')
-    currentSlide.parentNode.parentNode.scrollTo({ left: currentSlide.clientWidth * currentIndex, behavior: 'smooth' })
-}
+        .slider .slider_cover .slide_item {
+            width: 100%;
+            height: auto;
+            flex-shrink: 0;
+            scroll-snap-align: start;
+            display: flex;
+            justify-content: center;
 
-window.nextSlide = (sliderContainer) => {
-    let currentSlide = sliderContainer.querySelector(".tumbnail_image.active img")
-    let slides = sliderContainer.querySelectorAll(".tumbnail_image img")
-    let currentIndex = Array.from(slides).indexOf(currentSlide) + 1
-    let mainImage = sliderContainer.querySelector(".card-img img")
-    if (currentIndex == slides.length) {
-        currentIndex = 0
-    }
-    
-    slides.forEach((slide)=>{
-        slide.parentNode.classList.remove('active')
-    });
+        }
 
-    slides[currentIndex].parentNode.classList.add('active')
-    mainImage.src = slides[currentIndex].src.replace('/200/133', '/700/500')
-    currentSlide.parentNode.parentNode.scrollTo({ left: currentSlide.clientWidth * currentIndex, behavior: 'smooth' });
-}
+        .controls {
+            position: fixed;
+            right: 0;
+            left: 0;
+            bottom: 8%;
+            text-align: center;
+        }
 
-Optimized above both function of javascript and then can we try that only one function that handles both nextSlide and prevSlide function so that we can reduce the  same code in both function after one function there is only one code and handle only one function for both operations. 
+        @media screen and (max-width:1109px) {
+            img {
+                height: auto;
+                width: 90vw;
+            }
+        }
+
+        @media screen and (max-width:768px) {
+            img {
+                height: auto;
+                width: 90vw;
+            }
+        }
+
+add scroll snap property and scrollbar hidden means slide also change using keybord  so for that reason add appropriate scroll property.
   
