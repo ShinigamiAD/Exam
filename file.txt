@@ -35,18 +35,43 @@
 Above html code is refrence for below javascript code  
 
 window.prevSlide = (sliderContainer) => {
-        let currentSlide = sliderContainer.querySelector(".tumbnail_image.active img")
-        let slides = sliderContainer.querySelectorAll(".tumbnail_image img")
-        let currentIndex = Array.prototype.slice.call(slides).indexOf(currentSlide) - 1
-        
-        let mainImage = sliderContainer.querySelector(".card-img img")
-        if (currentIndex < 0) {
-            currentIndex = slides.length - 1
-        }	
-        mainImage.src = slides[currentIndex].src.replace('/200/133', '/700/500')
-        slides[currentIndex].parentNode.classList.add('active')
-        currentSlide.parentNode.parentNode.scrollTo({ left: currentSlide.clientWidth * currentIndex, behavior: 'smooth' })
+    let currentSlide = sliderContainer.querySelector(".tumbnail_image.active img")
+    let slides = sliderContainer.querySelectorAll(".tumbnail_image img")
+    let currentIndex = Array.from(slides).indexOf(currentSlide) - 1
+
+
+    let mainImage = sliderContainer.querySelector(".card-img img")
+    if (currentIndex < 0) {
+        currentIndex = slides.length - 1
     }
 
-Optimised above javascript code and make it sort and easy
+    slides.forEach((slide) => {
+        slide.parentNode.classList.remove('active')
+    });
+
+
+    mainImage.src = slides[currentIndex].src.replace('/200/133', '/700/500')
+    slides[currentIndex].parentNode.classList.add('active')
+    currentSlide.parentNode.parentNode.scrollTo({ left: currentSlide.clientWidth * currentIndex, behavior: 'smooth' })
+}
+
+window.nextSlide = (sliderContainer) => {
+    let currentSlide = sliderContainer.querySelector(".tumbnail_image.active img")
+    let slides = sliderContainer.querySelectorAll(".tumbnail_image img")
+    let currentIndex = Array.from(slides).indexOf(currentSlide) + 1
+    let mainImage = sliderContainer.querySelector(".card-img img")
+    if (currentIndex == slides.length) {
+        currentIndex = 0
+    }
+    
+    slides.forEach((slide)=>{
+        slide.parentNode.classList.remove('active')
+    });
+
+    slides[currentIndex].parentNode.classList.add('active')
+    mainImage.src = slides[currentIndex].src.replace('/200/133', '/700/500')
+    currentSlide.parentNode.parentNode.scrollTo({ left: currentSlide.clientWidth * currentIndex, behavior: 'smooth' });
+}
+
+Optimized above both function of javascript and then can we try that only one function that handles both nextSlide and prevSlide function so that we can reduce the  same code in both function after one function there is only one code and handle only one function for both operations. 
   
