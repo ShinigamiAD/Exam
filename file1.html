@@ -2,8 +2,6 @@
     <div class="card-img">
         <img src="https://picsum.photos/id/12/700/500" alt="" class="static-img">
         <div class="actions">
-            
-            
                 <span class="icon material-icons material-symbols-outlined">chevron_left</span>
             </span>
             <span class="next"  onclick="one(event.target.closest('.card-carousel'), 'next')">
@@ -40,7 +38,6 @@ window.activateSlide = (sliderContainer, currentSlide) => {
     currentSlide.parentNode.classList.add('active');
     currentSlide.parentNode.parentNode.scrollTo({ left: currentSlide.parentNode.clientWidth * currentIndex, behavior: 'smooth' });
 }
-
 window.one = (sliderContainer, side) => {
     let currentSlide = sliderContainer.querySelector(".tumbnail_image.active img")
     let slides = sliderContainer.querySelectorAll(".tumbnail_image img");
@@ -53,7 +50,6 @@ window.one = (sliderContainer, side) => {
     } else if (side == 'next') {
         currentIndex = (currentIndex + 1) % slides.length
     }
-
     slides.forEach((slide) => {
         slide.parentNode.classList.remove('active')
     });
@@ -62,6 +58,4 @@ window.one = (sliderContainer, side) => {
     mainImage.src = slides[currentIndex].src.replace('/200/133', '/700/500')
     currentSlide.parentNode.parentNode.scrollTo({ left: currentSlide.clientWidth * currentIndex, behaviour: 'smooth' });
 }
-
  Can you modify above code with shorting the code of two function and make one function if possible the html code is given for refrence 
-        
