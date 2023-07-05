@@ -1,5 +1,13 @@
- mainImage.alt = currentSlide.alt
+window.one = (sliderContainer, direction) => {
+    let currentSlide = sliderContainer.querySelector(".tumbnail_image.active img")
+    let slides = sliderContainer.querySelectorAll(".tumbnail_image img");
+    let mainImage = sliderContainer.querySelector(".card-img img");
 
-mainImage.alt = slides[currentIndex].alt
+    let currentIndex = Array.from(slides).indexOf(currentSlide);
 
-what is the diffrence between this to code lines
+    if (direction == 'prev') {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length
+    } else if (direction == 'next') {
+        currentIndex = (currentIndex + 1) % slides.length
+    }
+}
