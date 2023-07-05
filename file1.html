@@ -1,13 +1,67 @@
-window.one = (sliderContainer, direction) => {
+ <div class="card-carousel">
+    <div class="card-img">
+        <img src="https://picsum.photos/id/12/700/500" alt="" class="static-img">
+        <div class="actions">
+            
+            
+                <span class="icon material-icons material-symbols-outlined">chevron_left</span>
+            </span>
+            <span class="next"  onclick="one(event.target.closest('.card-carousel'), 'next')">
+                <span class="icon material-icons material-symbols-outlined" data-cid-7="">chevron_right</span>  
+            </span>
+        </div>
+    </div>
+    <div class="thumbnails">
+        <div class="tumbnail_image active">
+            <img src="https://picsum.photos/id/12/200/133" alt=""
+                onclick="activateSlide(event.target.closest('.card-carousel'),event.target)">   
+        </div>
+        <div class="tumbnail_image">
+            <img src="https://picsum.photos/id/16/200/133" alt=""
+                onclick="activateSlide(event.target.closest('.card-carousel'),event.target)">
+        </div>
+        <div class="tumbnail_image">
+            <img src="https://picsum.photos/id/29/200/133" alt=""
+                onclick="activateSlide(event.target.closest('.card-carousel'),event.target)">
+        </div>
+
+        above code is the html code for refrence
+        
+window.activateSlide = (sliderContainer, currentSlide) => {
+    let thumbnail = sliderContainer.querySelector(".thumbnails .tumbnail_image.active");
+    thumbnail.classList.remove('active');
+
+    let slides = sliderContainer.querySelectorAll(".tumbnail_image img");
+    let mainImage = sliderContainer.querySelector(".card-img img");
+
+    let currentIndex = Array.from(slides).indexOf(currentSlide)
+
+    mainImage.src = currentSlide.src.replace('/200/133', '/700/500');
+    currentSlide.parentNode.classList.add('active');
+    currentSlide.parentNode.parentNode.scrollTo({ left: currentSlide.parentNode.clientWidth * currentIndex, behavior: 'smooth' });
+}
+
+window.one = (sliderContainer, side) => {
     let currentSlide = sliderContainer.querySelector(".tumbnail_image.active img")
     let slides = sliderContainer.querySelectorAll(".tumbnail_image img");
     let mainImage = sliderContainer.querySelector(".card-img img");
 
     let currentIndex = Array.from(slides).indexOf(currentSlide);
 
-    if (direction == 'prev') {
+    if (side == 'prev') {
         currentIndex = (currentIndex - 1 + slides.length) % slides.length
-    } else if (direction == 'next') {
+    } else if (side == 'next') {
         currentIndex = (currentIndex + 1) % slides.length
     }
+
+    slides.forEach((slide) => {
+        slide.parentNode.classList.remove('active')
+    });
+
+    slides[currentIndex].parentNode.classList.add('active')
+    mainImage.src = slides[currentIndex].src.replace('/200/133', '/700/500')
+    currentSlide.parentNode.parentNode.scrollTo({ left: currentSlide.clientWidth * currentIndex, behaviour: 'smooth' });
 }
+
+ Can you modify above code with shorting the code of two function and make one function if possible the html code is given for refrence 
+        
