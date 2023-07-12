@@ -160,3 +160,5 @@ Make 3-4 Testimonial Card layout with small profile image  and add proper css de
     </div>
 </body>
 </html>
+
+in above code change flex-order and add flex-shrink , flex-basis property for just an example 
