@@ -5,6 +5,7 @@ Make 3-4 Testimonial Card layout with small profile image  and add proper css de
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,32 +21,34 @@ Make 3-4 Testimonial Card layout with small profile image  and add proper css de
         }
 
         .card {
-            width: 300px;
+            /* flex: 1 1 300px; */
+            width: 300px;   
             margin: 20px;
             border: 4px solid #ccc;
             border-radius: 5px;
             padding: 20px;
-
         }
         .card2 {
+            flex: 1 1 auto;
             width: 300px;
             margin: 20px;
             border: 4px solid #ccc;
             border-radius: 5px;
             padding: 20px;
+
         }
         .card3 {
+            flex: 1 1 auto;
             width: 300px;
             margin: 20px;
             border: 4px solid #ccc;
             border-radius: 5px;
             padding: 20px;
-            /* flex-grow: 3; */
-
         }
 
         .content {
             display: flex;
+            flex: 1 1 auto;
             flex-direction: column;
             align-items: center;
             text-align: center;
@@ -69,7 +72,6 @@ Make 3-4 Testimonial Card layout with small profile image  and add proper css de
             padding: 5px;
             gap: 30px;
             color: #337ab7;
-
         }
 
         .name1 {
@@ -82,7 +84,7 @@ Make 3-4 Testimonial Card layout with small profile image  and add proper css de
         }
         @media (max-width:768px){
             .card{
-                max-width:75%;
+                max-width:70%;
             }
         }
     </style>
@@ -161,4 +163,5 @@ Make 3-4 Testimonial Card layout with small profile image  and add proper css de
 </body>
 </html>
 
-in above code change flex-order and add flex-shrink , flex-basis property for just an example 
+in above code change flex-order and update only css not html
+
