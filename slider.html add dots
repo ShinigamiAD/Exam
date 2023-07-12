@@ -1,3 +1,162 @@
 make 3-4 Profile cards using grid and use min max property and all other grid properties and also apply the mobile view media query also add proper css desing like professional profile cards so use proper css for that 
 
 Make 3-4 Testimonial Card layout with small profile image  and add proper css desing like professional testimonial and apply Flexbox for this layout and use all flexbox property like align-items , order , flex-direction, flex-basis , flex-grow , and many more also apply the mobile view Media query also add proper css 
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .card {
+            width: 300px;
+            margin: 20px;
+            border: 4px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+
+        }
+        .card2 {
+            width: 300px;
+            margin: 20px;
+            border: 4px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        .card3 {
+            width: 300px;
+            margin: 20px;
+            border: 4px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            /* flex-grow: 3; */
+
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .p-img {
+            width: 65%;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px inset lightseagreen;
+        }
+
+        .tes {
+            color: #888888;
+            font-size: 22px;
+        }
+
+        .icons a {
+            margin-top: 10px;
+            font-size: 30px;
+            padding: 5px;
+            gap: 30px;
+            color: #337ab7;
+
+        }
+
+        .name1 {
+            font-size: 27px;
+            color: #e1306c;
+        }
+        .icons .insta{
+            color:#e1306c;
+
+        }
+        @media (max-width:768px){
+            .card{
+                max-width:75%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="content">
+                <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?cs=srgb&dl=pexels-pixabay-220453.jpg&fm=jpg"
+                    alt="Img1" class="p-img">
+                <h3 class="name1">John Doe</h3>
+                <p class="tes">"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quod tempora corporis et,
+                    praesentium placeat deserunt debitis."
+                </p>
+                <div class="icons">
+                    <a
+                        href="https://www.googleadservices.com/pagead/aclk?sa=L&ai=DChcSEwj20NSByqT_AhWCHysKHfZAD1QYABAAGgJzZg&ohost=www.google.com&cid=CAASJuRooeWw72iAxhE60tt7UVC9BYV7RQEfl5eSh-jwztrdl0crNk_6&sig=AOD64_1fPQO3Wp8vtzYtEaw9T_MBEV2LPg&q&adurl&ved=2ahUKEwjbrc6ByqT_AhXl-TgGHT12AEoQ0Qx6BAgGEAE"><i
+                            class="fab fa-facebook"></i></a>
+                    <a href="https://twitter.com/login"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/" class="insta"><i class="fab fa-instagram"></i></a>
+                    <a href="https://in.linkedin.com/"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="card2">
+            <div class="content">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR72aEsvFKoRJpfaWB4G1ftrlpe8tN5O6rPhigr1s7UmPYWxH3PeYE2Z1Gqmv8VnT8qtsc&usqp=CA"
+                    alt="Img1" class="p-img">
+                <h3 class="name1">Jane Smith</h3>
+                <p class="tes">" Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quod tempora corporis et,
+                    praesentium placeat deserunt debitis."</p>
+                <div class="icons">
+                    <a
+                        href="https://www.googleadservices.com/pagead/aclk?sa=L&ai=DChcSEwj20NSByqT_AhWCHysKHfZAD1QYABAAGgJzZg&ohost=www.google.com&cid=CAASJuRooeWw72iAxhE60tt7UVC9BYV7RQEfl5eSh-jwztrdl0crNk_6&sig=AOD64_1fPQO3Wp8vtzYtEaw9T_MBEV2LPg&q&adurl&ved=2ahUKEwjbrc6ByqT_AhXl-TgGHT12AEoQ0Qx6BAgGEAE"><i
+                            class="fab fa-facebook"></i></a>
+                    <a href="https://twitter.com/login"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/" class="insta"><i class="fab fa-instagram"></i></a>
+                    <a href="https://in.linkedin.com/"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="card3">
+            <div class="content">
+                <img src="https://sb.kaleidousercontent.com/67418/1920x1545/c5f15ac173/samuel-raita-ridxdghg7pw-unsplash.jpg"
+                    alt="Img1" class="p-img">
+                <h3 class="name1">David Johnson</h3>
+                <p class="tes">" Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quod tempora corporis et,
+                    praesentium placeat deserunt debitis."</p>
+                <div class="icons">
+                    <a
+                        href="https://www.googleadservices.com/pagead/aclk?sa=L&ai=DChcSEwj20NSByqT_AhWCHysKHfZAD1QYABAAGgJzZg&ohost=www.google.com&cid=CAASJuRooeWw72iAxhE60tt7UVC9BYV7RQEfl5eSh-jwztrdl0crNk_6&sig=AOD64_1fPQO3Wp8vtzYtEaw9T_MBEV2LPg&q&adurl&ved=2ahUKEwjbrc6ByqT_AhXl-TgGHT12AEoQ0Qx6BAgGEAE"><i
+                            class="fab fa-facebook"></i></a>
+                    <a href="https://twitter.com/login"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/" class="insta"><i class="fab fa-instagram"></i></a>
+                    <a href="https://in.linkedin.com/"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="content">
+                <img src="https://images.pexels.com/photos/2726111/pexels-photo-2726111.jpeg?cs=srgb&dl=pexels-masha-raymers-2726111.jpg&fm=jpg"
+                    alt="Img1" class="p-img">
+                <h3 class="name1">Sarah Williams</h3>
+                <p class="tes">" Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quod tempora corporis et,
+                    praesentium placeat deserunt debitis."</p>
+                <div class="icons">
+                    <a href="https://www.googleadservices.com/pagead/aclk?sa=L&ai=DChcSEwj20NSByqT_AhWCHysKHfZAD1QYABAAGgJzZg&ohost=www.google.com&cid=CAASJuRooeWw72iAxhE60tt7UVC9BYV7RQEfl5eSh-jwztrdl0crNk_6&sig=AOD64_1fPQO3Wp8vtzYtEaw9T_MBEV2LPg&q&adurl&ved=2ahUKEwjbrc6ByqT_AhXl-TgGHT12AEoQ0Qx6BAgGEAE"><i class="fab fa-facebook"></i></a>
+                    <a href="https://twitter.com/login"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/" class="insta"><i class="fab fa-instagram"></i></a>
+                    <a href="https://in.linkedin.com/"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
